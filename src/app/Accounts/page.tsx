@@ -11,7 +11,7 @@ export default function Home() {
         <div className="relative z-10 flex items-center justify-center h-full text-black">
           <div>
             <h1 className="text-6xl font-Poppins text-center">Shop</h1>
-            <p className="text-2xl mt-2">Home &gt; Shop</p>
+            <p className="text-4xl mt-6">Home &gt; Shop</p>
           </div>
         </div>
       </header>

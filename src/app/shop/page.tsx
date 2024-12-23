@@ -35,7 +35,7 @@ export default function ShopPage() {
         <div className="relative z-10 flex items-center justify-center h-full text-black">
           <div>
             <h1 className="text-6xl font-Poppins text-center">Shop</h1>
-            <p className="text-2xl mt-2">Home &gt; Shop</p>
+            <p className="text-4xl mt-6">Home &gt; Shop</p>
           </div>
         </div>
       </header>
@@ -45,7 +45,7 @@ export default function ShopPage() {
         <HiOutlineViewGrid size={28} />
          <BsViewList size={28} />
          <RxDividerVertical size={28} />
-         <h2 className="text-[16px] font-semibold">Showing 1–16 of 32 results</h2>
+         <h2 className="text-[16px] font-semibold">Showing 1-16 of 32 results</h2>
          </div>
         
         

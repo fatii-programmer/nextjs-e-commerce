@@ -9,12 +9,13 @@ function Navbar() {
   return (
     <div className="w-100% h-[100px]  text-[#000000] flex justify-between pr-[100px]">
        
-        <div className="flex w-[430px] h-[24] gap-[75px] relative left-[505px] pt-[38px] font-semibold">
+        <div className="flex w-[430px] h-[24] gap-[75px] relative left-[400px] pt-[38px] font-semibold">
            
-            <Link href="/home"> Home</Link>
-            <Link href="/shop"> Shop</Link>
-            <Link href="/about"> About</Link>
-            <Link href="/contact"> Contact</Link>
+        <Link href="/"> Home</Link>
+        <Link href="/shop"> Shop</Link>
+        <Link href="/about"> About</Link>
+         <Link href="/contact"> Contact</Link>
+
         </div>
        
             
