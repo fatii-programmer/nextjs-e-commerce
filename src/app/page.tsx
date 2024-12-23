@@ -77,8 +77,6 @@ function HeroSection() {
               <button className="border-2 border-black text-black py-2 px-4  hover:bg-gray-800">Order Now</button>
             </div>
           </div>
-
-          1111
         </div>
       </section>
       <div className="bg-cover bg-center py-16 px-12" style={{ backgroundImage: "url('/instabg.jpg')" }}>
