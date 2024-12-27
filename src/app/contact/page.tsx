@@ -4,7 +4,7 @@ const Contact = () => {
   return (
     <div className="bg-gray-50 min-h-screen">
       <header
-        className="relative bg-cover bg-center h-80"
+        className="relative bg-cover bg-center h-60"
         style={{ backgroundImage: "url(/bg.jpg)" }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-30"></div>

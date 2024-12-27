@@ -5,13 +5,13 @@ export default function Home() {
     <div>
      
       <header
-        className="relative bg-cover bg-center h-80"
+        className="relative bg-cover bg-center h-60"
         style={{ backgroundImage: 'url(/bg.jpg)' }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-30"></div>
         <div className="relative z-10 flex items-center justify-center h-full text-black">
           <div>
-            <h1 className="text-6xl font-Poppins text-center">Shop</h1>
+            <h1 className="text-6xl font-Poppins text-center">Checkout</h1>
             <p className="text-4xl mt-6">Home &gt; Checkout</p>
           </div>
         </div>

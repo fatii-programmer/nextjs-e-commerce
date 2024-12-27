@@ -5,7 +5,7 @@ const Footer: React.FC = () => {
         <footer className="bg-white py-20 border-t border-gray-300">
             <div className="container mx-auto px-4 md:px-12">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
-                    <div className="text-gray-600 text-sm ">
+                    <div className="text-gray-600 text-2xl ">
                         <p>400 University Drive Suite 200 Coral Gables,</p>
                         <p>FL 33134 USA</p>
                     </div>
