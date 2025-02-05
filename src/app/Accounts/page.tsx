@@ -3,24 +3,32 @@ import React from 'react';
 export default function Home() {
   return (
     <div>
-      <header
-        className="relative bg-cover bg-center h-60 sm:h-72 md:h-96"
-        style={{ backgroundImage: 'url(/bg.jpg)' }}
-      >
-        <div className="absolute inset-0 bg-black bg-opacity-30"></div>
-        <div className="relative z-10 flex items-center justify-center h-full text-black">
-          <div className="px-4 sm:px-6 lg:px-8">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-Poppins text-center">Accounts</h1>
-            <p className="text-xl sm:text-2xl md:text-4xl mt-4">Home &gt; Accounts</p>
-          </div>
-        </div>
-      </header>
+    
+    <header
+  className="relative bg-cover bg-center h-60"
+  style={{ backgroundImage: "url(/bg.jpg)" }}
+>
+  <div className="absolute inset-0 bg-black bg-opacity-30"></div>
+  <div className="relative z-10 flex flex-col items-center justify-center h-full text-black">
+    {/* Image Section */}
+    <img
+      src="/hi.jpg"
+      alt="Icon"
+      className="w-32 h-32 mt-3"
+    />
 
+    {/* Text Section */}
+    <div>
+      <h1 className="text-6xl font-Poppins text-center mt-6px">Accounts</h1>
+      <p className="text-2xl mb-2 text-center mt-3" >Home &gt; Accounts</p>
+    </div>
+  </div>
+</header>
       <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4 sm:px-6 lg:px-8">
         <div className="rounded-lg p-6 sm:p-8 lg:p-12 max-w-6xl w-full flex flex-col lg:flex-row gap-10 lg:gap-20">
           {/* Log In Section */}
           <div className="flex-1">
-            <h2 className="text-3xl sm:text-5xl lg:text-7xl font-bold mb-8 text-center">Log In</h2>
+            <h2 className="text-2xl sm:text-3xl lg:text-6xl font-bold mb-8 text-left">Log In</h2>
             <form>
               <div className="mb-8">
                 <label htmlFor="username" className="block text-gray-700 font-medium text-lg sm:text-2xl mb-4">
@@ -62,7 +70,7 @@ export default function Home() {
                 >
                   Log In
                 </button>
-                <a href="#" className="text-blue-500 hover:underline text-base sm:text-lg">
+                <a href="#" className="text-black-500 hover:underline text-base sm:text-lg">
                   Lost your password?
                 </a>
               </div>
@@ -71,7 +79,7 @@ export default function Home() {
 
           {/* Register Section */}
           <div className="flex-1">
-            <h2 className="text-3xl sm:text-5xl lg:text-7xl font-bold mb-6 text-center">Register</h2>
+            <h2 className="text-2xl sm:text-5xl lg:text-6xl font-bold mb-6 text-left">Register</h2>
             <form>
               <div className="mb-6">
                 <label htmlFor="email" className="block text-gray-700 font-medium text-lg sm:text-2xl mb-4">

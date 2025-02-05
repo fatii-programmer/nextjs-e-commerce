@@ -1,36 +1,138 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Furniture E-Commerce Website Documentation
 
-## Getting Started
+## 📌 Introduction
+This documentation provides an in-depth overview of the **Furniture E-Commerce Website**, detailing its architecture, features, technologies, and setup process.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🚀 Features & Functionalities
+✅ **Dynamic Product Pages** - Uses dynamic routing for product pages.
+✅ **Sanity CMS Integration** - Fetches and manages product data.
+✅ **User Authentication** - Secure login & registration via Firebase.
+✅ **Wishlist & Cart System** - Users can save or add items to cart.
+✅ **Search Bar** - Enables quick product searches.
+✅ **Payment Gateway** - Secure checkout using Stripe/Razorpay.
+✅ **Optimized Performance** - Implements SSR, lazy loading, and caching.
+
+---
+
+## 🛠 Technology Stack
+- **Frontend:** Next.js, React.js, Tailwind CSS
+- **Backend:** Sanity.io (CMS), Firebase Auth
+- **Database:** Sanity.io for structured data storage
+
+---
+
+## 📂 Project Structure
+```
+/furniture-ecommerce
+│── /components     # Reusable UI components
+│── /pages          # Dynamic product & checkout pages
+│── /public         # Static assets
+│── /styles         # Tailwind CSS styles
+│── /utils          # Helper functions & API calls
+│── sanity.json     # Sanity CMS config
+│── package.json    # Dependencies
+│── next.config.js  # Next.js settings
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🔗 API Integration with Sanity
+Fetching products:
+```js
+import { client } from '../sanity';
+const fetchProducts = async () => {
+  const query = `*[_type == 'furniture']`;
+  return await client.fetch(query);
+};
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🔄 Dynamic Routing & Data Fetching
+Each product page is dynamically created:
+```js
+export async function getServerSideProps({ params }) {
+  const query = `*[_type == 'furniture' && slug.current == '${params.slug}'][0]`;
+  const product = await client.fetch(query);
+  return { props: { product } };
+}
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🔑 Authentication System
+Secure Firebase login:
+```js
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+const auth = getAuth();
+signInWithEmailAndPassword(auth, email, password)
+  .then((user) => console.log('User Logged In'))
+  .catch((error) => console.error(error));
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🛒 Cart & Wishlist Functionality
+```js
+const addToCart = (product) => {
+  setCart([...cart, product]);
+};
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 💳 Checkout & Payment
+1️⃣ **Cart Selection** → 2️⃣ **Shipping Details** → 3️⃣ **Payment Processing** → 4️⃣ **Order Confirmation**
+
+---
+
+## 🔍 Search Functionality
+```js
+const filteredProducts = products.filter((product) =>
+  product.name.toLowerCase().includes(searchQuery.toLowerCase())
+);
+```
+
+---
+
+## 📈 Performance Optimizations
+✔ **Server-Side Rendering (SSR)**
+✔ **Lazy Loading Components**
+✔ **Rate Limiting API Calls**
+✔ **Secure HTTPS & Headers**
+
+---
+
+## 🏗 Installation & Setup
+**Clone Repository:**
+```sh
+git clone https://github.com/your-repo/furniture-ecommerce.git
+cd furniture-ecommerce
+```
+**Install Dependencies:**
+```sh
+npm install
+```
+**Run Project:**
+```sh
+npm run dev
+```
+**Setup Environment Variables:**
+```env
+NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
+NEXT_PUBLIC_FIREBASE_API_KEY=your_firebase_key
+```
+
+---
+
+## 🔮 Future Enhancements
+🚀 **Real-time Order Tracking**
+🛒 **AI-Based Recommendations**
+🏠 **Augmented Reality for Preview**
+
+---
+
+## ❓ Need Help?
+For any issues, feel free to open a GitHub issue. 🚀
