@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { client } from "../../sanity/lib/client";  // Correct import
+import { client } from "@/sanity/lib/client";
 import { Product } from "../../../types/products";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,7 +9,6 @@ import { addToCart, addToWishlist } from "../actions/actions";
 import Swal from "sweetalert2";
 import { Heart } from "lucide-react";
 
-// Define the query to fetch products from Sanity
 const query = `*[_type == "product"]{
   _id,
   title,
@@ -35,7 +34,6 @@ export default function ShopPage() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        // Fetch products from Sanity
         const fetchedProducts = await client.fetch(query);
         setProducts(fetchedProducts);
       } catch (error) {
@@ -59,7 +57,13 @@ export default function ShopPage() {
       >
         <div className="absolute inset-0 bg-black bg-opacity-30"></div>
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-black">
-          <img src="/hi.jpg" alt="Icon" className="w-32 h-32 mt-3" />
+          <Image
+            src="/hi.jpg"
+            alt="Icon"
+            width={128} // Equivalent to w-32 in Tailwind
+            height={128} // Equivalent to h-32 in Tailwind
+            className="mt-3"
+          />
           <div>
             <h1 className="text-6xl font-Poppins text-center mt-6px">Shop</h1>
             <p className="text-2xl mb-2 text-center mt-3">Home &gt; Shop</p>
@@ -124,7 +128,6 @@ export default function ShopPage() {
   );
 }
 
-// Product Card Component
 function ProductCard({ product }: { product: Product }) {
   const handleAddToCart = (e: React.MouseEvent, product: Product) => {
     e.preventDefault();

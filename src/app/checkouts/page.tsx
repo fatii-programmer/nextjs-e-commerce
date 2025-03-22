@@ -5,7 +5,6 @@ import Image from "next/image";
 import { getCartItems } from "@/app/actions/actions";
 import Link from "next/link";
 import { Product } from "../../../types/products";
-import { urlFor } from "@/sanity/lib/image";
 import { CgChevronRight } from "react-icons/cg";
 
 // Define the structure of cart items
@@ -41,13 +40,7 @@ export default function CheckoutsPage() {
     async function fetchCartItems() {
       const items = await getCartItems();
       if (Array.isArray(items)) {
-        // Adjust data to match { product, quantity }
-        setCartItems(
-          items.map((item: { product: Product; quantity: number }) => ({
-            product: item.product,
-            quantity: item.quantity,
-          }))
-        );
+        setCartItems(items.map((item) => ({ product: item.product, quantity: item.quantity })));
       }
     }
     fetchCartItems();
@@ -58,10 +51,7 @@ export default function CheckoutsPage() {
     }
   }, []);
 
-  const subtotal = cartItems.reduce(
-    (total, item) => total + (item.product.price || 0) * item.quantity,
-    0
-  );
+  const subtotal = cartItems.reduce((total, item) => total + (item.product.price || 0) * item.quantity, 0);
   const total = Math.max(subtotal - discount, 0);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -95,10 +85,7 @@ export default function CheckoutsPage() {
       <div className="mt-6">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav className="flex items-center gap-2 py-4">
-            <Link
-              href="/carts"
-              className="text-[#666666] hover:text-black transition text-sm"
-            >
+            <Link href="/carts" className="text-[#666666] hover:text-black transition text-sm">
               Carts
             </Link>
             <CgChevronRight className="w-4 h-4 text-[#666666]" />
@@ -117,7 +104,6 @@ export default function CheckoutsPage() {
               cartItems.map((item) => (
                 <div key={item.product._id} className="flex items-center gap-4 py-3 border-b">
                   <div className="w-16 h-16 rounded overflow-hidden">
-                    {/* Optional chaining to avoid errors */}
                     {item.product.productImage?.asset?.url && (
                       <Image
                         src={item.product.productImage.asset.url}
@@ -125,6 +111,7 @@ export default function CheckoutsPage() {
                         width={64}
                         height={64}
                         className="object-cover w-full h-full"
+                        priority
                       />
                     )}
                   </div>
@@ -132,21 +119,15 @@ export default function CheckoutsPage() {
                     <h3 className="text-sm font-medium">{item.product.title || "Unknown Product"}</h3>
                     <p className="text-xs text-gray-500">Quantity: {item.quantity}</p>
                   </div>
-                  <p className="text-sm font-medium">
-                    ${(item.product.price || 0) * item.quantity}
-                  </p>
+                  <p className="text-sm font-medium">${(item.product.price || 0) * item.quantity}</p>
                 </div>
               ))
             ) : (
               <p className="text-sm text-gray-500">Your cart is empty.</p>
             )}
             <div className="text-right pt-4">
-              <p className="text-sm">
-                Subtotal: <span className="font-medium">${subtotal.toFixed(2)}</span>
-              </p>
-              <p className="text-sm">
-                Discount: <span className="font-medium">-${discount.toFixed(2)}</span>
-              </p>
+              <p className="text-sm">Subtotal: <span className="font-medium">${subtotal.toFixed(2)}</span></p>
+              <p className="text-sm">Discount: <span className="font-medium">-${discount.toFixed(2)}</span></p>
               <p className="text-lg font-semibold">Total: ${total.toFixed(2)}</p>
             </div>
           </div>
@@ -165,22 +146,13 @@ export default function CheckoutsPage() {
                     placeholder={`Enter your ${key}`}
                     value={formValues[key]}
                     onChange={handleInputChange}
-                    className={`border w-full p-2 rounded-md ${
-                      formErrors[key] ? "border-red-500" : ""
-                    }`}
+                    className={`border w-full p-2 rounded-md ${formErrors[key] ? "border-red-500" : ""}`}
                   />
-                  {formErrors[key] && (
-                    <p className="text-sm text-red-500">
-                      {key.replace(/([A-Z])/g, ' $1')} is required.
-                    </p>
-                  )}
+                  {formErrors[key] && <p className="text-sm text-red-500">{key.replace(/([A-Z])/g, ' $1')} is required.</p>}
                 </div>
               ))}
             </div>
-            <button
-              className="w-full h-12 bg-blue-500 hover:bg-blue-700 text-white"
-              onClick={handlePlaceOrder}
-            >
+            <button className="w-full h-12 bg-blue-500 hover:bg-blue-700 text-white" onClick={handlePlaceOrder}>
               Place Order
             </button>
           </div>

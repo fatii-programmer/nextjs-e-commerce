@@ -1,12 +1,14 @@
-import { client } from "../../../sanity/lib/client";
+import { client } from "@/sanity/lib/client";
 import { Product } from "../../../../types/products";
 import { groq } from "next-sanity";
 import Image from "next/image";
 
+// Props interface mein params ko Promise ke tor par type kiya gaya hai
 interface ProductPageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
+// Product fetch karne wali async function
 async function getProduct(slug: string): Promise<Product | null> {
   return client
     .fetch(
@@ -26,8 +28,10 @@ async function getProduct(slug: string): Promise<Product | null> {
     .catch(() => null);
 }
 
+// Async component jo await ke through params resolve karta hai
 export default async function ProductPage({ params }: ProductPageProps) {
-  const { slug } = params;
+  // await karke params se slug hasil karein
+  const { slug } = await params;
   const product = await getProduct(slug);
 
   if (!product) {
@@ -35,7 +39,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4">z
+    <div className="max-w-7xl mx-auto px-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
         <div className="aspect-square">
           <Image

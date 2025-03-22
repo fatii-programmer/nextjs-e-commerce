@@ -1,31 +1,23 @@
 import React from "react";
-
+import Image from "next/image";
 
 const CartPage = () => {
   return (
     <div>
       {/* Header */}
-     
-    <header
-  className="relative bg-cover bg-center h-60"
-  style={{ backgroundImage: "url(/bg.jpg)" }}
->
-  <div className="absolute inset-0 bg-black bg-opacity-30"></div>
-  <div className="relative z-10 flex flex-col items-center justify-center h-full text-black">
-    {/* Image Section */}
-    <img
-      src="/hi.jpg"
-      alt="Icon"
-      className="w-32 h-32 mt-3"
-    />
+      <header className="relative bg-cover bg-center h-60" style={{ backgroundImage: "url(/bg.jpg)" }}>
+        <div className="absolute inset-0 bg-black bg-opacity-30"></div>
+        <div className="relative z-10 flex flex-col items-center justify-center h-full text-black">
+          {/* Image Section */}
+          <Image src="/hi.jpg" alt="Icon" width={128} height={128} className="mt-3" />
 
-    {/* Text Section */}
-    <div>
-      <h1 className="text-6xl font-Poppins text-center mt-6px">Cart</h1>
-      <p className="text-2xl mb-2 text-center mt-3" >Home &gt; Cart</p>
-    </div>
-  </div>
-</header>
+          {/* Text Section */}
+          <div>
+            <h1 className="text-6xl font-Poppins text-center mt-6px">Cart</h1>
+            <p className="text-2xl mb-2 text-center mt-3">Home &gt; Cart</p>
+          </div>
+        </div>
+      </header>
 
       {/* Main Section */}
       <div className="bg-white flex justify-center items-start py-10 px-4 sm:px-6 lg:px-8">
@@ -44,23 +36,14 @@ const CartPage = () => {
               <tbody>
                 <tr className="border-t text-center">
                   <td className="py-8 flex items-center justify-center sm:justify-start">
-                    <img
-                      src="/asgardsofa.jpg"
-                      alt="Asgaard Sofa"
-                      className="w-12 h-12 sm:w-16 sm:h-16 rounded mr-4 bg-[#FFF2CC]"
-                    />
+                    <Image src="/asgardsofa.jpg" alt="Asgaard Sofa" width={64} height={64} className="rounded mr-4 bg-[#FFF2CC]" />
                     <span className="text-gray-800 text-sm sm:text-base">Asgaard Sofa</span>
                   </td>
                   <td className="py-4 text-gray-800 text-sm sm:text-base">Rs. 250,000.00</td>
                   <td className="py-4">
-                    <input
-                      type="number"
-                      defaultValue="1"
-                      className="w-12 sm:w-16 border border-gray-300 rounded text-center"
-                    />
+                    <input type="number" defaultValue="1" className="w-12 sm:w-16 border border-gray-300 rounded text-center" />
                   </td>
                   <td className="py-4 text-gray-800 text-sm sm:text-base">Rs. 250,000.00</td>
-                
                 </tr>
               </tbody>
             </table>
@@ -80,10 +63,7 @@ const CartPage = () => {
               </div>
             </div>
             <div className="flex justify-center mt-14">
-              <button
-                type="submit"
-                className="w-32 sm:w-40 py-4 sm:py-4 px-4 border border-black rounded-lg hover:bg-gray-100 transition"
-              >
+              <button type="submit" className="w-32 sm:w-40 py-4 sm:py-4 px-4 border border-black rounded-lg hover:bg-gray-100 transition">
                 Check Out
               </button>
             </div>

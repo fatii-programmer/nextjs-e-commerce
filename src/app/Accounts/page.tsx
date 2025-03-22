@@ -1,29 +1,30 @@
-import React from 'react';
+import Image from 'next/image';
 
 export default function Home() {
   return (
     <div>
-    
-    <header
-  className="relative bg-cover bg-center h-60"
-  style={{ backgroundImage: "url(/bg.jpg)" }}
->
-  <div className="absolute inset-0 bg-black bg-opacity-30"></div>
-  <div className="relative z-10 flex flex-col items-center justify-center h-full text-black">
-    {/* Image Section */}
-    <img
-      src="/hi.jpg"
-      alt="Icon"
-      className="w-32 h-32 mt-3"
-    />
+      <header
+        className="relative bg-cover bg-center h-60"
+        style={{ backgroundImage: "url(/bg.jpg)" }}
+      >
+        <div className="absolute inset-0 bg-black bg-opacity-30"></div>
+        <div className="relative z-10 flex flex-col items-center justify-center h-full text-black">
+          {/* Image Section */}
+          <Image
+            src="/hi.jpg"
+            alt="Icon"
+            width={128}
+            height={128}
+            className="mt-3"
+          />
 
-    {/* Text Section */}
-    <div>
-      <h1 className="text-6xl font-Poppins text-center mt-6px">Accounts</h1>
-      <p className="text-2xl mb-2 text-center mt-3" >Home &gt; Accounts</p>
-    </div>
-  </div>
-</header>
+          {/* Text Section */}
+          <div>
+            <h1 className="text-6xl font-Poppins text-center mt-6px">Accounts</h1>
+            <p className="text-2xl mb-2 text-center mt-3">Home &gt; Accounts</p>
+          </div>
+        </div>
+      </header>
       <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4 sm:px-6 lg:px-8">
         <div className="rounded-lg p-6 sm:p-8 lg:p-12 max-w-6xl w-full flex flex-col lg:flex-row gap-10 lg:gap-20">
           {/* Log In Section */}

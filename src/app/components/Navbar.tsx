@@ -76,7 +76,7 @@ function Navbar() {
           {searchQuery && (
             <div className="absolute top-[45px] left-0 w-full bg-white shadow-lg rounded-lg p-4 z-50">
               <h2 className="text-lg font-semibold">
-                Search Results for "{searchQuery}"
+                Search Results for &quot;{searchQuery}&quot;
               </h2>
               <div className="flex flex-col gap-2 mt-2">
                 {searchResults.length > 0 ? (
@@ -121,20 +121,20 @@ function Navbar() {
               <div className="absolute top-[35px] right-0 bg-white shadow-lg rounded-lg p-4 w-[200px] z-50">
                 <h3 className="font-semibold text-lg">Your Cart</h3>
                 <ul className="mt-2">
-                  <li  className="hover:bg-gray-200 p-2 rounded">
+                  <li className="hover:bg-gray-200 p-2 rounded">
                     <Link href="/SingleProduct">Single Product</Link>
                   </li>
-                  <li  className="hover:bg-gray-200 p-2 rounded">
+                  <li className="hover:bg-gray-200 p-2 rounded">
                     <Link href="/cartsidebar">Cart Sidebar</Link>
                   </li>
-                  <li  className="hover:bg-gray-200 p-2 rounded">
+                  <li className="hover:bg-gray-200 p-2 rounded">
                     <Link href="/Accounts">My Account</Link>
                   </li>
-                  <li  className="hover:bg-gray-200 p-2 rounded">
+                  <li className="hover:bg-gray-200 p-2 rounded">
                     <Link href="/checkout">Checkout</Link>
                   </li>
-                 
-                  <li  className="hover:bg-gray-200 p-2 rounded">
+
+                  <li className="hover:bg-gray-200 p-2 rounded">
                     <Link href="/cart">Cart</Link>
                   </li>
                 </ul>
