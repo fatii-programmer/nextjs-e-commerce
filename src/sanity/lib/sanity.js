@@ -8,3 +8,4 @@ export const client = createClient({
   token: process.env.ski5FSNMcX6Aq4ItavsKSXcR3vTonxxk9FQE1zoni5t4tUtSTnZJ2ryajozlmG177La3wGr9rU2p3HmW1Kvrm97DqBBFAHxdVBftHG2wjMCjuAY9i8RcAZYWQTjIbQ0BP8XcX2N8xD79ZmoZoH6ZKJYG5pdntlfbeGRQtmF4S9A0EkAz8GNn
 })
 export default client;
+                           
