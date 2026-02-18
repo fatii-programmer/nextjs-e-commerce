@@ -1,97 +1,151 @@
-import Image from 'next/image'
-import React from 'react'
- 
+"use client";
 
+import Image from "next/image";
+import React, { useState } from "react";
+import { addToCart } from "../actions/actions";
+import Swal from "sweetalert2";
 
-const FirstSection = () => {
+const FirstSection: React.FC = () => {
+  // Quantity & Color State
+  const [quantity, setQuantity] = useState<number>(1);
+  const [selectedColor, setSelectedColor] = useState<string>("#816DFA");
+
+  const incrementQuantity = () => setQuantity(quantity + 1);
+  const decrementQuantity = () => {
+    if (quantity > 1) setQuantity(quantity - 1);
+  };
+  const handleColorSelect = (color: string) => setSelectedColor(color);
+  const handleAddToCart = () => {
+    const product = {
+      _id: "asgaard-sofa-001",
+      title: "Asgaard Sofa",
+      description: "Setting the bar as one of the loudest speakers in its class, the Kilburn is a compact, stout-hearted hero...",
+      price: 25000,
+      productImage: { asset: { url: "/asgardsofa.jpg" } },
+      slug: { current: "asgaard-sofa" },
+      inventory: 10,
+    };
+    addToCart(product, quantity);
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: `${product.title} added to cart (x${quantity})`,
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  };
+
+  const colors = [
+    { code: "#816DFA", name: "Purple" },
+    { code: "#000000", name: "Black" },
+    { code: "#CDBA7B", name: "Beige" },
+  ];
+
   return (
-
     <>
-  
-      <div className='mt-8 md:flex space-x-10 justify-center ml--2 '>
-        <div className='flex space-x-10 r'>
-          <div className='space-y-6'>
-            <Image src="/side1.jpg" alt='Product' width={85} height={80} />
-            <Image src="/side2.jpg" alt='Product' width={85} height={80} />
-            <Image src="/side3.jpg" alt='Product' width={85} height={80} />
-            <Image src="/side4.jpg" alt='Product' width={85} height={80} />
-
+      {/* Main Product Section */}
+      <div className="mt-8 md:flex flex-wrap justify-center gap-10 px-4 md:px-12">
+        {/* Side Images and Main Image */}
+        <div className="flex space-x-10">
+          <div className="space-y-6">
+            <Image src="/side1.jpg" alt="Side 1" width={85} height={80} />
+            <Image src="/side2.jpg" alt="Side 2" width={85} height={80} />
+            <Image src="/side3.jpg" alt="Side 3" width={85} height={80} />
+            <Image src="/side4.jpg" alt="Side 4" width={85} height={80} />
           </div>
-          <div className='bg-[#FFF9E5] w-96 h-96 flex justify-center items-center'>
-            <Image src="/asgardsofa.jpg" alt='Product' width={200} height={200} className='w-80 h-80' />
+          <div className="bg-[#FFF9E5] w-96 h-96 flex justify-center items-center">
+            <Image src="/asgardsofa.jpg" alt="Asgaard Sofa" width={200} height={200} className="w-80 h-80" />
           </div>
         </div>
-        <div>
-          <h2 className='text-2xl font-bold'>Asgaard Sofa</h2>
-          <p className='text-gray-400 mt-1'>Rs. 25,000.00</p>
-          <div className='flex mt-1'>
-            <Image src="/star.jpg" alt='rating Icons' className='h-5 w-5' width={50} height={50} />
-            <Image src="/star.jpg" alt='rating Icons' width={50} height={50} className='h-5 w-5' />
-            <Image src="/star.jpg" alt='rating Icons' width={50} height={50} className='h-5 w-5' />
-            <Image src="/star.jpg" alt='rating Icons' width={50} height={50} className='h-5 w-5' />
-            <Image src="/hstar.jpg" alt='rating Icons' width={50} height={50} className='h-5 w-5' />
-            <Image src="/pipeIcon.png" alt='rating Icons' width={50} height={50} className='h-5 w-[2px]' />
-            <p className='text-gray-400 ml-3'>5 Customer Review</p>
+
+        {/* Product Details */}
+        <div className="max-w-lg">
+          <h2 className="text-2xl font-bold">Asgaard Sofa</h2>
+          <p className="text-gray-400 mt-1">Rs. 25,000.00</p>
+
+          {/* Rating */}
+          <div className="flex mt-1 items-center">
+            {[...Array(4)].map((_, i) => (
+              <Image key={i} src="/star.jpg" alt="Star" width={20} height={20} className="h-5 w-5" />
+            ))}
+            <Image src="/hstar.jpg" alt="Half Star" width={20} height={20} className="h-5 w-5" />
+            <p className="text-gray-400 ml-2">5 Customer Review</p>
           </div>
-          <p className='w-[350px] lg:w-[500px] mt-1'>Setting the bar as one of the loudest speakers in its class, the Kilburn is a compact, stout-hearted hero with a well-balanced audio which boasts a clear midrange and extended highs for a sound.
+
+          {/* Product Description */}
+          <p className="text-gray-500 mt-2">
+            Setting the bar as one of the loudest speakers in its class, the Kilburn is a compact, stout-hearted hero...
           </p>
-          <p className='text-gray-200 mt-1'>Size</p>
-          <div className='mt-1  space-x-4'>
-            <span className='bg-[#FBEBB5] rounded  text-lg px-3 py-1   '>L</span>
-            <span className='bg-gray-50 rounded  text-lg px-2 py-1   '>XL</span>
-            <span className='bg-gray-50 rounded  text-lg px-2 py-1   '>XS</span>
+
+          {/* Size */}
+          <p className="text-gray-400 mt-2">Size</p>
+          <div className="flex gap-4 mt-1">
+            <span className="bg-[#FBEBB5] rounded text-lg px-3 py-1 cursor-pointer">L</span>
+            <span className="bg-gray-50 rounded text-lg px-2 py-1 cursor-pointer">XL</span>
+            <span className="bg-gray-50 rounded text-lg px-2 py-1 cursor-pointer">XS</span>
           </div>
 
-          <p className='text-gray-200 mt-1'>Color</p>
-          <div className='mt-1  space-x-6 flex' >
-            <div className='h-8 w-8 rounded-full bg-[#816DFA]'></div>
-            <div className='h-8 w-8 rounded-full bg-black'></div>
-            <div className='h-8 w-8 rounded-full bg-[#CDBA7B]'></div>
+          {/* Color */}
+          <p className="text-gray-400 mt-4">Color</p>
+          <div className="flex mt-2 gap-4">
+            {colors.map((color) => (
+              <div
+                key={color.code}
+                onClick={() => handleColorSelect(color.code)}
+                className={`h-8 w-8 rounded-full cursor-pointer border-2 ${selectedColor === color.code ? "border-black" : "border-transparent"}`}
+                style={{ backgroundColor: color.code }}
+              ></div>
+            ))}
           </div>
-          <div className='flex -mt-4 space-x-4'>
-            <div className='h-10 w-32 border rounded-lg border-gray-400 mt-10'>
-              <div className='flex p-2 justify-center items-center  space-x-7'>
-                <p>-</p>
-                <p>1</p>
-                <p>+</p>
-              </div>
+
+          {/* Quantity & Add to Cart */}
+          <div className="flex items-center mt-4 gap-4">
+            <div className="flex items-center border rounded-lg border-gray-400">
+              <button className="px-4 py-2 text-lg" onClick={decrementQuantity}>-</button>
+              <span className="px-6 text-lg">{quantity}</span>
+              <button className="px-4 py-2 text-lg" onClick={incrementQuantity}>+</button>
             </div>
 
-            <div className='lg:h-10 h-10 px-10  lg:px-16 border rounded-lg border-gray-800 mt-10'>
-              <div className='flex mt-1 justify-center items-center text-sm lg:text-xl font-semibold space-x-2 lg:space-x-7'>
-                <h2> Add to Cart</h2>
-              </div>
-            </div>
-
-          </div>
-          <div className='border-t border-gray-400 mt-10'>
-            <div className='flex text-gray-400 mt-4'>
-              <p>SKU </p>
-              <p className='ml-10 '>: SS001</p>
-            </div>
-
-            <div className='flex text-gray-400 mt-4'>
-              <p>Category </p>
-              <p className='ml-2 '>: Sofa</p>
-            </div>
-            <div className='flex text-gray-400 mt-4'>
-              <p>Tag </p>
-              <p className='ml-12 '>: Sofa, Chair, Home, Shop</p>
-            </div>
-
-            <div className='flex text-gray-400 mt-6'>
-              <p>Share </p>
-              <p className='ml-8'>:</p>
-              <div className='flex space-x-4 ml-2'>
-                <Image src="/f.jpg" width={100} height={100}  alt='facbook' className='h-6 w-6 ' />
-                <Image src="/link.jpg" width={50} height={50}  alt='facbook' className='h-6 w-6 ' />
-                <Image src="/tit.jpg" width={50} height={50}  alt='facbook' className='h-6 w-6 ' />
-              </div>
-            </div>
-
+            <button
+              className="bg-black text-white px-6 py-2 rounded-lg hover:bg-gray-800"
+              onClick={handleAddToCart}
+            >
+              Add to Cart
+            </button>
           </div>
         </div>
       </div>
+
+        <div className="flex flex-col items-center text-gray-400 mt-6 space-y-4">
+  <div className="flex space-x-2">
+    <p>SKU</p>
+    <p>: SS001</p>
+  </div>
+
+  <div className="flex space-x-2">
+    <p>Category</p>
+    <p>: Sofa</p>
+  </div>
+
+  <div className="flex space-x-2">
+    <p>Tag</p>
+    <p>: Sofa, Chair, Home, Shop</p>
+  </div>
+
+  <div className="flex items-center space-x-2">
+    <p>Share</p>
+    <p>:</p>
+    <div className="flex space-x-4">
+      <Image src="/f.jpg" width={24} height={24} alt="Facebook" className="h-7 w-7" />
+      <Image src="/link.jpg" width={24} height={24} alt="LinkedIn" className="h-7 w-7" />
+      <Image src="/tit.jpg" width={50} height={50} alt='facbook' className='h-8 w-8 ' />
+    </div>
+  </div>
+</div>
+
+
+        
+    
 
       <div className="border-t-2 border-gray-400 mt-20">
       {/* Tabs Section */}

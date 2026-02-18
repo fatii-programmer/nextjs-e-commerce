@@ -1,7 +1,8 @@
 import { client } from "@/sanity/lib/client";
-import { Product } from "../../../../types/products";
+import { Product } from "../../../types/products";
 import { groq } from "next-sanity";
 import Image from "next/image";
+import AddToCartButton from "./AddToCartButton";
 
 // Props interface mein params ko Promise ke tor par type kiya gaya hai
 interface ProductPageProps {
@@ -21,7 +22,9 @@ async function getProduct(slug: string): Promise<Product | null> {
             url
           }
         },
-        price
+        price,
+        slug,
+        inventory
       }`,
       { slug }
     )
@@ -54,6 +57,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           <h1 className="text-4xl font-bold">{product.title}</h1>
           <p className="text-2xl font-sans">${product.price}</p>
           <p>{product.description}</p>
+          <AddToCartButton product={product} />
         </div>
       </div>
     </div>

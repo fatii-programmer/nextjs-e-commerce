@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { client } from "@/sanity/lib/client";
-import { Product } from "../../../types/products";
+import type { Product } from "@/types/products";
 import Image from "next/image";
 import Link from "next/link";
 import { addToCart, addToWishlist } from "../actions/actions";
@@ -93,20 +93,30 @@ export default function ShopPage() {
         </div>
 
         {/* Pagination Section */}
-        <div className="mt-16 flex justify-center flex-wrap gap-8">
-          <div className="bg-yellow-200 w-16 h-16 sm:w-16 sm:h-16 flex items-center justify-center text-black rounded-lg">
-            <p className="font-semibold text-lg sm:text-2xl">1</p>
-          </div>
-          <div className="bg-yellow-100 w-16 h-16 sm:w-16 sm:h-16 flex items-center justify-center text-black rounded-lg">
-            <p className="font-semibold text-lg sm:text-2xl">2</p>
-          </div>
-          <div className="bg-yellow-100 w-16 h-16 sm:w-16 sm:h-16 flex items-center justify-center text-black rounded-lg">
-            <p className="font-semibold text-lg sm:text-2xl">3</p>
-          </div>
-          <div className="bg-yellow-100 w-16 h-16 sm:w-16 sm:h-16 flex items-center justify-center text-black rounded-lg">
-            <p className="font-semibold text-lg sm:text-2xl">Next</p>
-          </div>
-        </div>
+ <div className="mt-16 flex justify-center flex-wrap gap-8">
+  <button
+    onClick={() => window.location.href = "/shop/page1"}
+    className="bg-yellow-200 w-16 h-16 sm:w-16 sm:h-16 flex items-center justify-center text-black rounded-lg font-semibold text-lg sm:text-2xl hover:bg-yellow-300 transition"
+  >
+    1
+  </button>
+
+  <button
+    onClick={() => window.location.href = "/shop/page2"}
+    className="bg-yellow-100 w-16 h-16 sm:w-16 sm:h-16 flex items-center justify-center text-black rounded-lg font-semibold text-lg sm:text-2xl hover:bg-yellow-200 transition"
+  >
+    2
+  </button>
+
+  <button
+    onClick={() => window.location.href = "/shop/page3"}
+    className="bg-yellow-100 w-16 h-16 sm:w-16 sm:h-16 flex items-center justify-center text-black rounded-lg font-semibold text-lg sm:text-2xl hover:bg-yellow-200 transition"
+  >
+    3
+  </button>
+
+ 
+</div>
 
         {/* Info Section */}
         <div className="flex flex-col sm:flex-row justify-around bg-[#FAF4F4] py-8 sm:py-12 px-4 sm:px-8 mt-12 rounded-lg shadow-md">
