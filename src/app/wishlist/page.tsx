@@ -1,6 +1,6 @@
 "use client";
 
-import { Product } from "../../../types/products";
+import { Product } from "@/types/products";
 import React, { useEffect, useState } from "react";
 import { getWishlistItems, removeFromWishlist } from "../actions/actions";
 import Image from "next/image";

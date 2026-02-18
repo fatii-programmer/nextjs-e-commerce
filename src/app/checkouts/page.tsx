@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { getCartItems } from "@/app/actions/actions";
 import Link from "next/link";
-import { Product } from "../../../types/products";
+import { Product } from "@/types/products";
 import { CgChevronRight } from "react-icons/cg";
 
 // Define the structure of cart items

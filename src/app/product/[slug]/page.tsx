@@ -1,5 +1,5 @@
 import { client } from "@/sanity/lib/client";
-import { Product } from "../../../types/products";
+import { Product } from "@/types/products";
 import { groq } from "next-sanity";
 import Image from "next/image";
 import AddToCartButton from "./AddToCartButton";
